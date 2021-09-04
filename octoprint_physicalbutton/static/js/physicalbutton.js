@@ -63,11 +63,11 @@ $(function () {
                     return true;
                 }
             }
-            if (self.buttons().find(b => b.activities().find(a => a.gpioPin() == item))) {
+            /* if (self.buttons().find(b => b.activities().find(a => a.gpioPin() == item))) {
                 if (item != currentGPIO()) {
                     return true;
                 }
-            }
+            } */
             return false;
         };
 
