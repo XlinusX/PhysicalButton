@@ -2,7 +2,7 @@
 from __future__ import absolute_import
 
 import octoprint.plugin
-from gpiozero import Button
+from gpiozero import Button, DigitalOutputDevice
 import time
 import threading
 import subprocess
@@ -72,6 +72,9 @@ class PhysicalbuttonPlugin(octoprint.plugin.StartupPlugin,
                 if activity.get("type") == "file":
                     #select the file at the given location
                     exitCode = self.selectFile(activity.get("execute"))
+                if activity.get("type") == "gpio":
+                    #change the state of the specified GPIO pin
+                    exitCode = self.changeGPIO(activity.get("execute"),int(activity.get("gpioPin")))
                 #Check if an executed activity failed
                 if exitCode == 0:
                     self._logger.debug("The activity with identifier '%s' was executed successfully!" %activity.get("identifier"))
@@ -162,6 +165,19 @@ class PhysicalbuttonPlugin(octoprint.plugin.StartupPlugin,
         except (octoprint.printer.InvalidFileType, octoprint.printer.InvalidFileLocation) as e:
             self._logger.error(e)
             return -1
+
+    def changeGPIO(self, action, pin):
+        output = DigitalOutputDevice(pin, initial_value=None)
+        if action == 'switch on':
+            output.on()
+            return 0
+        if action == 'switch off':
+            output.off()
+            return 0
+        if action == 'toggle':
+            output.toggle()
+            return 0
+        
 
     ####################################_Custom actions_##############################################
     def toggle_cancel_print(self):

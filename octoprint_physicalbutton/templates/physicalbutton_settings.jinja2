@@ -116,11 +116,11 @@
                                 <textarea data-bind="attr:{rows: 5}, value:$parent.selectedActivity().execute" placeholder="Path/To/File.gcode"></textarea>
                             </div>
                             <div class="control-group activity-gpio" data-bind="if:$parent.selectedActivity().type() == 'gpio'">
-                                <div>
+                                <div class="control-group" >
                                     <label for="" title="Choose the type of GPIO change">GPIO: </label>
-                                    <select data-bind="options:$root.gpioActions, value:$parent.selectedActivity().executeGPIO"></select>
+                                    <select data-bind="options:$root.gpioActions, value:$parent.selectedActivity().execute"></select>
                                 </div>
-                                <div>
+                                <div class="control-group" >
                                     <label for="" title="Choose the GPIO pin to change">GPIO Pin:</label>
                                     <select data-bind="foreach: {data:$root.gpios, as: 'gpioListItem'}, value:$parent.selectedActivity().gpioPin">
                                         <option data-bind="value:$data, text: gpioListItem == 'none' ? gpioListItem : 'GPIO'+gpioListItem"></option>

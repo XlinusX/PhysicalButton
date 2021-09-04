@@ -98,7 +98,6 @@ $(function () {
                 type: ko.observable('action'),
                 identifier: ko.observable('New Action'),
                 execute: ko.observable('none'),
-                executeGPIO: ko.observable(''),
                 gpioPin: ko.observable('')
             });
             self.selectedActivity(this.activities()[this.activities().length - 1]);
@@ -113,7 +112,6 @@ $(function () {
                 type: ko.observable('gcode'),
                 identifier: ko.observable('New GCODE'),
                 execute: ko.observable(''),
-                executeGPIO: ko.observable(''),
                 gpioPin: ko.observable('')
             });
             self.selectedActivity(this.activities()[this.activities().length - 1]);
@@ -128,7 +126,6 @@ $(function () {
                 type: ko.observable('system'),
                 identifier: ko.observable('New System Command'),
                 execute: ko.observable(''),
-                executeGPIO: ko.observable(''),
                 gpioPin: ko.observable('')
             });
             self.selectedActivity(this.activities()[this.activities().length - 1]);
@@ -143,7 +140,6 @@ $(function () {
                 type: ko.observable('file'),
                 identifier: ko.observable('New File'),
                 execute: ko.observable(''),
-                executeGPIO: ko.observable(''),
                 gpioPin: ko.observable('')
             });
             self.selectedActivity(this.activities()[this.activities().length - 1]);
@@ -157,8 +153,7 @@ $(function () {
             updatedItem.activities.push({
                 type: ko.observable('gpio'),
                 identifier: ko.observable('New GPIO'),
-                execute: ko.observable(''),
-                executeGPIO: ko.observable('none'),
+                execute: ko.observable('none'),
                 gpioPin: ko.observable('none')
             });
             self.selectedActivity(this.activities()[this.activities().length - 1]);
