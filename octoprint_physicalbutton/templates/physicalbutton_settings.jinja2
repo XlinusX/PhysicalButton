@@ -68,6 +68,7 @@
                                 <button class="btn" data-bind="click: $parent.addFile">File</button>
                                 <button class="btn" data-bind="click: $parent.addGCODE">GCODE</button>
                                 <button class="btn" data-bind="click: $parent.addSystem">System</button>
+                                <button class="btn" data-bind="click: $parent.addGPIO">GPIO</button>
                             </div>
                             <div class="control-group activity-list">
                                 <label for="" title="List of your added activities">Activities:</label>
@@ -113,6 +114,14 @@
                                     </a>
                                 </div>
                                 <textarea data-bind="attr:{rows: 5}, value:$parent.selectedActivity().execute" placeholder="Path/To/File.gcode"></textarea>
+                            </div>
+                            <div class="control-group activity-gpio" data-bind="if:$parent.selectedActivity().type() == 'gpio'">
+                                <label for="" title="Choose the type of GPIO change">GPIO:</label>
+                                <select data-bind="options:$root.gpioActions, value:$parent.selectedActivity().executeGPIO"></select>
+                                <label for="" title="Choose the GPIO pin to change">GPIO Pin:</label>
+                                <select data-bind="foreach: {data:$root.gpios, as: 'gpioListItem'}, value:$parent.selectedActivity().gpioPin">
+                                    <option data-bind="value:$data, text: gpioListItem == 'none' ? gpioListItem : 'GPIO'+gpioListItem ,disable: $root.disableGpioOption(gpioListItem,$parent.selectedActivity().gpioPin)"></option>
+                                </select>
                             </div>
                         </div>
                     </div>
